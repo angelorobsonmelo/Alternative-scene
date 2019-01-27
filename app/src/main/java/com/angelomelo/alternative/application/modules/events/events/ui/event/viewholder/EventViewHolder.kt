@@ -3,14 +3,13 @@ package com.angelomelo.alternative.application.modules.events.events.ui.event.vi
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.angelomelo.alternative.application.domain.Event
-import kotlinx.android.synthetic.main.event_item.view.*
 
 class EventViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    private  val mText = itemView.item_event_text
+//    private  val mText = itemView.item_event_text
 
     fun bindData(event: Event) {
-        mText.text = event.title
+//        mText.text = event.title
     }
 
 }

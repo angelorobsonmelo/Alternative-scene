@@ -12,7 +12,6 @@ import com.angelomelo.alternative.application.modules.events.events.ui.event.vie
 
 class EventGridViewAdapter(val mContext: Context, val mEvents: List<Event>) : BaseAdapter() {
 
-
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         var convertView = convertView
         val viewHolder: EventViewHolder?
