@@ -1,9 +1,10 @@
 package com.angelomelo.alternative.application.modules.events.events
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import com.angelomelo.alternative.R
 import com.angelomelo.alternative.application.modules.events.events.ui.event.EventFragment
+
 
 class EventActivity : AppCompatActivity() {
 
@@ -12,8 +13,10 @@ class EventActivity : AppCompatActivity() {
         setContentView(R.layout.event_activity)
 
         if (savedInstanceState == null) {
+            val fragment = EventFragment.newInstance()
+
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container, EventFragment.newInstance())
+                .replace(R.id.container, fragment)
                 .commitNow()
         }
     }

@@ -29,7 +29,6 @@ class EventFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
         viewModel = ViewModelProviders.of(this).get(EventViewModel()::class.java)
         viewModel.getEvents(EventFilter(true), 0)
 
@@ -40,9 +39,7 @@ class EventFragment : Fragment() {
     private fun getEventSuccess() {
         viewModel.eventsResponse.observe(this, Observer { response ->
             val events = response?.data?.content
-
             val adapter = EventGridViewAdapter(context!!, events!!)
-
             grid_events.adapter = adapter
         })
     }
