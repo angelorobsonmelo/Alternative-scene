@@ -35,7 +35,8 @@ data class EventDate(
     val id: Long,
     val date: Date,
     val hour: String,
-    val priceDate: Double)
+    val price: Double,
+    val eventDateAndHourToString: String)
 
 data class MusicalGenre(
     val id: Long,

@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.GridView
 import android.widget.Toast
 import com.angelomelo.alternative.R
 import com.angelomelo.alternative.application.domain.filter.EventFilter

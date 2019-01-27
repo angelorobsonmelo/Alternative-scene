@@ -8,9 +8,8 @@ import kotlinx.android.synthetic.main.event_item.view.*
 
 class EventViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    private val mTitle = itemView.titleEventTextView
-    private val mDescription = itemView.dateEventTextView
     private val imageflyer = itemView.folterImageView
+    private val mTitle = itemView.titleEventTextView
     private val mLocality = itemView.eventLocalTextView
     private val mDates = itemView.dateEventTextView
 
@@ -21,19 +20,20 @@ class EventViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             .centerCrop()
             .into(imageflyer)
 
+       mDates.text = getFormatedDates(event)
+
         mTitle.text = event.title
         mLocality.text = "${event.locality.name} - ${event.locality.city.name}, ${event.locality.city.state.name} "
+    }
 
-        mDates.text = event.eventDates.map { it.date }.toString()
+    private fun getFormatedDates(event: Event): String {
+        val datesFormated: MutableList<String> = ArrayList()
 
-//        event.eventDates.forEach {
-//            dates = "${it.date}, ${it.hour}"
-//        }
+        event.eventDates.forEach {
+            datesFormated.add(it.eventDateAndHourToString)
+        }
 
-//        func getFunctionFormatedToString(functions: [Function]) -> String {
-//            let functionsArrayString = functions.map { $0.function! }
-//            return functionsArrayString.joined(separator: ", ")
-//        }
+        return datesFormated.joinToString(" - ")
     }
 
 }
