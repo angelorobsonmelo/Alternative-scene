@@ -5,7 +5,6 @@ import android.arch.lifecycle.ViewModel
 import com.angelomelo.alternative.application.UseCase
 import com.angelomelo.alternative.application.domain.Event
 import com.angelomelo.alternative.application.domain.filter.EventFilter
-import com.angelomelo.alternative.application.injections.InjectionUseCase
 import com.angelomelo.alternative.application.injections.InjectionUseCase.Companion.provideGetEvents
 import com.angelomelo.alternative.application.service.remote.commom.ContentObjects
 import com.angelomelo.alternative.application.service.remote.commom.ResponseBase
