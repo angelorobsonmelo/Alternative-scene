@@ -10,26 +10,15 @@ import com.angelomelo.alternative.application.domain.Event
 import com.angelomelo.alternative.application.modules.events.events.ui.event.viewholder.EventViewHolder
 
 
-class EventGridViewAdapter(val mContext: Context, val mEvents: List<Event>) : BaseAdapter() {
+class EventGridViewAdapter(private val mContext: Context, private val mEvents: List<Event>) : BaseAdapter() {
 
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        var convertView = convertView
-        val viewHolder: EventViewHolder?
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+        val view = LayoutInflater.from(mContext).inflate(R.layout.event_item, parent, false)
 
-        if (convertView == null) {
-            val layoutInflater = mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val holder = EventViewHolder(view)
+        holder.bindData(mEvents[position])
 
-            convertView = layoutInflater.inflate(R.layout.event_item, parent, false)
-            convertView.tag = EventViewHolder(convertView)
-
-            return convertView
-        } else {
-            viewHolder = convertView.tag as EventViewHolder
-        }
-
-        viewHolder.bindData(mEvents[position])
-
-        return convertView
+        return view
     }
 
     override fun getItem(position: Int): Any {
