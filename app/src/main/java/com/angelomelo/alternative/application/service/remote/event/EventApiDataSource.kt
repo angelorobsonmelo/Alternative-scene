@@ -7,11 +7,12 @@ import com.angelomelo.alternative.application.service.remote.commom.ResponseBase
 import retrofit2.http.Body
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.Query
 import rx.Observable
 
 interface EventApiDataSource {
 
     @POST("v1/events/filter")
-    fun getEvent(@Body filter: EventFilter, @Header("pag") page: Int?): Observable<ResponseBase<ContentObjects<Event>>>
+    fun getEvent(@Body filter: EventFilter, @Query("pag") page: Int?): Observable<ResponseBase<ContentObjects<Event>>>
 
 }
