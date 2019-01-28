@@ -24,52 +24,65 @@ class EventFragment : Fragment() {
 
     private lateinit var viewModel: EventViewModel
     private var eventsLoaded: MutableList<Event> = ArrayList()
+    private lateinit var mAdapter: EventAdapter
+    lateinit var mLayoutManager: GridLayoutManager
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
+
         return inflater.inflate(R.layout.event_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
         viewModel = ViewModelProviders.of(this).get(EventViewModel()::class.java)
-        val gridLayoutManager =  GridLayoutManager(context, 2)
-        recycler_events.layoutManager =  gridLayoutManager
+
         getEvents()
-        getEventSuccess()
-        getEventError()
+        initEventSuccessListener()
+        initEventErrorListener()
 
-        recycler_events.addOnScrollListener(object : EndlessRecyclerViewWithGridLayoutMenagerOnScrollListener(gridLayoutManager) {
-            override fun onLoadMore(currentPage: Int) {
-                getEvents(currentPage)
-            }
+        configureRecyclerView()
+        initScrollListener()
 
-        })
     }
 
     private fun getEvents(currentPage: Int = 0) {
         viewModel.getEvents(EventFilter(true), currentPage)
-
     }
 
-    private fun getEventSuccess() {
+    private fun initEventSuccessListener() {
         viewModel.eventsResponse.observe(this, Observer { response ->
             val events = response?.data?.content
 
-            this.eventsLoaded.addAll(events!!)
-
-            val adapter                   = EventAdapter(context!!, this.eventsLoaded)
-            recycler_events.adapter       = adapter
-            adapter.notifyDataSetChanged()
+            this.eventsLoaded.plusAssign(events!!)
+            this.mAdapter.notifyDataSetChanged()
         })
     }
 
-    private fun getEventError() {
+    private fun initEventErrorListener() {
         viewModel.error.observe(this, Observer { error ->
             Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
+        })
+    }
+
+    private fun configureRecyclerView() {
+        mLayoutManager = GridLayoutManager(context, 2)
+        recycler_events.layoutManager = mLayoutManager
+        mAdapter                       = EventAdapter(context!!, this.eventsLoaded)
+        recycler_events.adapter       = mAdapter
+    }
+
+    private fun initScrollListener() {
+        recycler_events.addOnScrollListener(object :
+            EndlessRecyclerViewWithGridLayoutMenagerOnScrollListener(mLayoutManager) {
+            override fun onLoadMore(currentPage: Int) {
+                getEvents(currentPage)
+            }
+
         })
     }
 
