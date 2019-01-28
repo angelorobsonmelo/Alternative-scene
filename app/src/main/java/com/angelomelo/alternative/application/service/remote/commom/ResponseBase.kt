@@ -14,3 +14,18 @@ class ResponseBase<T> {
         }
 
 }
+
+
+class ResponseListBase<T> {
+
+    val data: ContentObjects<T>? = null
+
+    var errors: List<String>? = null
+        get() {
+            if (field == null) {
+                this.errors = ArrayList()
+            }
+            return field
+        }
+
+}

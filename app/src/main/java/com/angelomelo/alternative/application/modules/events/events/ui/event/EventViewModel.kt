@@ -6,22 +6,21 @@ import com.angelomelo.alternative.application.UseCase
 import com.angelomelo.alternative.application.domain.Event
 import com.angelomelo.alternative.application.domain.filter.EventFilter
 import com.angelomelo.alternative.application.injections.InjectionUseCase.Companion.provideGetEvents
-import com.angelomelo.alternative.application.service.remote.commom.ContentObjects
-import com.angelomelo.alternative.application.service.remote.commom.ResponseBase
+import com.angelomelo.alternative.application.service.remote.commom.ResponseListBase
 import com.angelomelo.alternative.application.usecases.GetEvents
 
 class EventViewModel : ViewModel() {
 
     private val mGetEvents: GetEvents = provideGetEvents()
 
-    var eventsResponse = MutableLiveData<ResponseBase<ContentObjects<Event>>>()
+    var eventsResponse = MutableLiveData<ResponseListBase<Event>>()
     var messageEmpty = MutableLiveData<String>()
     var error = MutableLiveData<String>()
 
     fun getEvents(filter: EventFilter, page: Int?) {
-        mGetEvents.getEvents(filter, page, object : UseCase.LoadUseCaseCallback<ResponseBase<ContentObjects<Event>>> {
+        mGetEvents.getEvents(filter, page, object : UseCase.LoadUseCaseCallback<ResponseListBase<Event>> {
 
-            override fun onLoaded(response: ResponseBase<ContentObjects<Event>>) {
+            override fun onLoaded(response: ResponseListBase<Event>) {
                 eventsResponse.value = response
             }
 

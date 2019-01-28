@@ -6,6 +6,7 @@ import com.angelomelo.alternative.application.domain.filter.EventFilter
 import com.angelomelo.alternative.application.service.RemoteDataSourceCallback
 import com.angelomelo.alternative.application.service.remote.commom.ContentObjects
 import com.angelomelo.alternative.application.service.remote.commom.ResponseBase
+import com.angelomelo.alternative.application.service.remote.commom.ResponseListBase
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
@@ -22,7 +23,7 @@ class EventRemoteDataSourceImpl(private val mEventApiDataSource: EventApiDataSou
             }
     }
 
-    override fun getEvents(filter: EventFilter, page: Int?, callback: RemoteDataSourceCallback<ResponseBase<ContentObjects<Event>>>) {
+    override fun getEvents(filter: EventFilter, page: Int?, callback: RemoteDataSourceCallback<ResponseListBase<Event>>) {
         mEventApiDataSource.getEvent(filter, page)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
