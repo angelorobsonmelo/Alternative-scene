@@ -23,7 +23,7 @@ class ApiDataSource  {
             httpClient.addInterceptor(loggingInterceptor)
 
             val retrofit = Retrofit.Builder()
-                .baseUrl("http://10.0.0.103:8080/api/rest/")
+                .baseUrl("http://10.0.0.100:8080/api/rest/")
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(Gson()))
                 .client(httpClient.build())

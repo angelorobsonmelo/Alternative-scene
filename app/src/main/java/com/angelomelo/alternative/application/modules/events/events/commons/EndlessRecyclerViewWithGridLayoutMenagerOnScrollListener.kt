@@ -1,9 +1,9 @@
 package com.angelomelo.alternative.application.modules.events.events.commons
 
-import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 
-abstract class EndlessRecyclerOnScrollListener(private val mLinearLayoutManager: LinearLayoutManager) :
+abstract class EndlessRecyclerViewWithGridLayoutMenagerOnScrollListener(private val mGridLayoutManeger: GridLayoutManager) :
     RecyclerView.OnScrollListener() {
 
     private var previousTotal = 0
@@ -13,14 +13,14 @@ abstract class EndlessRecyclerOnScrollListener(private val mLinearLayoutManager:
     internal var visibleItemCount: Int = 0
     internal var totalItemCount: Int = 0
 
-    private var currentPage = 0
+    private var currentPage = 1
 
     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
         super.onScrolled(recyclerView, dx, dy)
 
         visibleItemCount = recyclerView.childCount
-        totalItemCount = mLinearLayoutManager.itemCount
-        firstVisibleItem = mLinearLayoutManager.findFirstVisibleItemPosition()
+        totalItemCount = mGridLayoutManeger.itemCount
+        firstVisibleItem = mGridLayoutManeger.findFirstVisibleItemPosition()
 
         if (loading) {
             if (totalItemCount > previousTotal) {

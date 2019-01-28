@@ -7,11 +7,10 @@
         android:layout_height="match_parent"
         tools:context=".ui.event.EventFragment">
 
-    <GridView
-            android:id="@+id/grid_events"
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_events"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:numColumns="2"
             android:padding="20dp"
             android:horizontalSpacing="10dp"
             android:verticalSpacing="10dp"

@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +12,7 @@ import android.widget.Toast
 import com.angelomelo.alternative.R
 import com.angelomelo.alternative.application.domain.Event
 import com.angelomelo.alternative.application.domain.filter.EventFilter
-import com.angelomelo.alternative.application.modules.events.events.commons.EndlessGridViewOnScrollListener
+import com.angelomelo.alternative.application.modules.events.events.commons.EndlessRecyclerViewWithGridLayoutMenagerOnScrollListener
 import kotlinx.android.synthetic.main.event_fragment.*
 
 
@@ -33,18 +34,25 @@ class EventFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
         viewModel = ViewModelProviders.of(this).get(EventViewModel()::class.java)
-        viewModel.getEvents(EventFilter(true), 0)
-
-        grid_events.setOnScrollListener(object : EndlessGridViewOnScrollListener() {
-            override fun onLoadMore(currentPage: Int) {
-                viewModel.getEvents(EventFilter(true), currentPage)
-            }
-
-        } )
-
+        val gridLayoutManager =  GridLayoutManager(context, 2)
+        recycler_events.layoutManager =  gridLayoutManager
+        getEvents()
         getEventSuccess()
         getEventError()
+
+        recycler_events.addOnScrollListener(object : EndlessRecyclerViewWithGridLayoutMenagerOnScrollListener(gridLayoutManager) {
+            override fun onLoadMore(currentPage: Int) {
+                getEvents(currentPage)
+            }
+
+        })
+    }
+
+    private fun getEvents(currentPage: Int = 0) {
+        viewModel.getEvents(EventFilter(true), currentPage)
+
     }
 
     private fun getEventSuccess() {
@@ -53,10 +61,9 @@ class EventFragment : Fragment() {
 
             this.eventsLoaded.addAll(events!!)
 
-            val adapter = EventGridViewAdapter(context!!, this.eventsLoaded)
-            grid_events.adapter = adapter
-
-            grid_events.smoothScrollToPosition(eventsLoaded.size - events.size - 3)
+            val adapter                   = EventAdapter(context!!, this.eventsLoaded)
+            recycler_events.adapter       = adapter
+            adapter.notifyDataSetChanged()
         })
     }
 
