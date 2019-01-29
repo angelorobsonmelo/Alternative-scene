@@ -14,8 +14,7 @@
             android:padding="20dp"
             android:horizontalSpacing="10dp"
             android:verticalSpacing="10dp"
+            android:scrollbars="vertical"
             />
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
