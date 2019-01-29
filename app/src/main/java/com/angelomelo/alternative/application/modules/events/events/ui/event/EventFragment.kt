@@ -13,9 +13,7 @@ import com.angelomelo.alternative.R
 import com.angelomelo.alternative.application.domain.Event
 import com.angelomelo.alternative.application.domain.filter.EventFilter
 import com.angelomelo.alternative.application.modules.events.events.commons.EndlessRecyclerOnScrollListener
-import com.angelomelo.alternative.application.modules.events.events.commons.EndlessRecyclerViewWithGridLayoutMenagerOnScrollListener
-import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter
-import jp.wasabeef.recyclerview.animators.*
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import kotlinx.android.synthetic.main.event_fragment.*
 
 class EventFragment : androidx.fragment.app.Fragment() {
@@ -33,8 +31,6 @@ class EventFragment : androidx.fragment.app.Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-
         return inflater.inflate(R.layout.event_fragment, container, false)
     }
 
@@ -72,17 +68,9 @@ class EventFragment : androidx.fragment.app.Fragment() {
     private fun configureRecyclerView() {
         mLayoutManager = GridLayoutManager(context, 2)
         recycler_events.layoutManager = mLayoutManager
-//            recycler_events.apply {
-//                SlideInDownAnimator()
-//                SlideInUpAnimator()
-//                adapter = this@EventFragment.mAdapter
-//                GridLayoutManager(context, 2)
-//            }
 
-        recycler_events.itemAnimator = FadeInAnimator()
-        recycler_events.adapter = AlphaInAnimationAdapter(mAdapter).apply {
-            FadeInDownAnimator(OvershootInterpolator(.5f))
-            FadeInUpAnimator(OvershootInterpolator(.5f))
+        recycler_events.adapter = ScaleInAnimationAdapter(mAdapter).apply {
+            setFirstOnly(true)
             setDuration(500)
             setInterpolator(OvershootInterpolator(.5f))
         }
@@ -94,7 +82,6 @@ class EventFragment : androidx.fragment.app.Fragment() {
             override fun onLoadMore(currentPage: Int) {
                 getEvents(currentPage)
             }
-
         })
     }
 
