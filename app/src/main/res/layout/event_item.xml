@@ -21,7 +21,7 @@
                 android:contentDescription="TODO"
                 android:cropToPadding="false"
                 android:adjustViewBounds="false"
-                android:scaleType="centerCrop"/>
+                android:scaleType="fitXY"/>
 
         <TextView
                 android:id="@+id/dateEventTextView"

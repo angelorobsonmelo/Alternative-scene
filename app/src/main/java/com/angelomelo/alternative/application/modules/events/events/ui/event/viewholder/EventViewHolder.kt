@@ -2,6 +2,7 @@ package com.angelomelo.alternative.application.modules.events.events.ui.event.vi
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.angelomelo.alternative.R
 import com.angelomelo.alternative.application.domain.Event
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.event_item.view.*
@@ -16,11 +17,10 @@ class EventViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun bindData(event: Event) {
         Picasso.get()
             .load(event.photoUrl)
-            .resize(imageflyer.width, 100)
-            .centerCrop()
+            .placeholder(R.drawable.heavy_metal_default)
             .into(imageflyer)
 
-       mDates.text = getFormatedDates(event)
+        mDates.text = getFormatedDates(event)
 
         mTitle.text = event.title
         mLocality.text = "${event.locality.name} - ${event.locality.city.name}, ${event.locality.city.state.name} "
