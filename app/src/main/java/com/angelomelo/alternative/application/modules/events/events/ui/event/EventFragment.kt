@@ -70,7 +70,7 @@ class EventFragment : androidx.fragment.app.Fragment() {
         recycler_events.layoutManager = mLayoutManager
 
         recycler_events.adapter = ScaleInAnimationAdapter(mAdapter).apply {
-            setFirstOnly(true)
+            setFirstOnly(false)
             setDuration(500)
             setInterpolator(OvershootInterpolator(.5f))
         }
