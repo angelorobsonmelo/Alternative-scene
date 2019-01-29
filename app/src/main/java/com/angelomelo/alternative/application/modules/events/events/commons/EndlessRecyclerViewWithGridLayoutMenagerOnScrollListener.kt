@@ -8,7 +8,7 @@ abstract class EndlessRecyclerViewWithGridLayoutMenagerOnScrollListener(private 
 
     private var previousTotal = 0
     private var loading = true
-    private val visibleThreshold = 2
+    private val visibleThreshold = 10
     internal var firstVisibleItem: Int = 0
     internal var visibleItemCount: Int = 0
     internal var totalItemCount: Int = 0

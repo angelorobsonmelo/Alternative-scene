@@ -12,8 +12,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.angelomelo.alternative.R
 import com.angelomelo.alternative.application.domain.Event
 import com.angelomelo.alternative.application.domain.filter.EventFilter
+import com.angelomelo.alternative.application.modules.events.events.commons.EndlessRecyclerOnScrollListener
 import com.angelomelo.alternative.application.modules.events.events.commons.EndlessRecyclerViewWithGridLayoutMenagerOnScrollListener
-import jp.wasabeef.recyclerview.animators.SlideInDownAnimator
+import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter
+import jp.wasabeef.recyclerview.animators.*
 import kotlinx.android.synthetic.main.event_fragment.*
 
 class EventFragment : androidx.fragment.app.Fragment() {
@@ -23,10 +25,9 @@ class EventFragment : androidx.fragment.app.Fragment() {
     }
 
     private lateinit var viewModel: EventViewModel
-    private var eventsLoaded: MutableList<Event> = ArrayList()
+    var eventsLoaded: MutableList<Event> = ArrayList()
     private lateinit var mAdapter: EventAdapter
     lateinit var mLayoutManager: GridLayoutManager
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,7 +41,7 @@ class EventFragment : androidx.fragment.app.Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(EventViewModel()::class.java)
-
+        mAdapter = EventAdapter(context!!, this.eventsLoaded)
         getEvents()
         initEventSuccessListener()
         initEventErrorListener()
@@ -57,8 +58,8 @@ class EventFragment : androidx.fragment.app.Fragment() {
         viewModel.eventsResponse.observe(this, Observer { response ->
             val events = response?.data?.content
 
-            this.eventsLoaded.plusAssign(events!!)
-            this.mAdapter.notifyItemChanged(2)
+            this.eventsLoaded.addAll(events!!)
+            this.mAdapter.notifyDataSetChanged()
         })
     }
 
@@ -71,17 +72,25 @@ class EventFragment : androidx.fragment.app.Fragment() {
     private fun configureRecyclerView() {
         mLayoutManager = GridLayoutManager(context, 2)
         recycler_events.layoutManager = mLayoutManager
-        recycler_events.itemAnimator = SlideInDownAnimator().apply {
-            setInterpolator(OvershootInterpolator())
-        }
+//            recycler_events.apply {
+//                SlideInDownAnimator()
+//                SlideInUpAnimator()
+//                adapter = this@EventFragment.mAdapter
+//                GridLayoutManager(context, 2)
+//            }
 
-        mAdapter                      = EventAdapter(context!!, this.eventsLoaded)
-        recycler_events.adapter       = mAdapter
+        recycler_events.itemAnimator = FadeInAnimator()
+        recycler_events.adapter = AlphaInAnimationAdapter(mAdapter).apply {
+            FadeInDownAnimator(OvershootInterpolator(.5f))
+            FadeInUpAnimator(OvershootInterpolator(.5f))
+            setDuration(500)
+            setInterpolator(OvershootInterpolator(.5f))
+        }
     }
 
     private fun initScrollListener() {
         recycler_events.addOnScrollListener(object :
-            EndlessRecyclerViewWithGridLayoutMenagerOnScrollListener(mLayoutManager) {
+            EndlessRecyclerOnScrollListener(mLayoutManager) {
             override fun onLoadMore(currentPage: Int) {
                 getEvents(currentPage)
             }
