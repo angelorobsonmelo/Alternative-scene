@@ -1,7 +1,7 @@
 package com.angelomelo.alternative.application.modules.events.events.ui.event.viewholder
 
-import android.support.v7.widget.RecyclerView
 import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 import com.angelomelo.alternative.application.domain.Event
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.event_item.view.*

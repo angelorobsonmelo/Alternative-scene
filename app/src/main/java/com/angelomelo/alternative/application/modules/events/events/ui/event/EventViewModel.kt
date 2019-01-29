@@ -1,7 +1,7 @@
 package com.angelomelo.alternative.application.modules.events.events.ui.event
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.angelomelo.alternative.application.UseCase
 import com.angelomelo.alternative.application.domain.Event
 import com.angelomelo.alternative.application.domain.filter.EventFilter

@@ -1,7 +1,7 @@
 package com.angelomelo.alternative.application.modules.events.events
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.angelomelo.alternative.R
 import com.angelomelo.alternative.application.modules.events.events.ui.event.EventFragment
 

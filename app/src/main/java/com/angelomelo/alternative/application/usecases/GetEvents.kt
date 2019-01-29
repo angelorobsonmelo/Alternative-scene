@@ -1,6 +1,6 @@
 package com.angelomelo.alternative.application.usecases
 
-import android.support.annotation.NonNull
+import androidx.annotation.NonNull
 import com.angelomelo.alternative.application.UseCase.LoadUseCaseCallback
 import com.angelomelo.alternative.application.domain.Event
 import com.angelomelo.alternative.application.domain.filter.EventFilter
