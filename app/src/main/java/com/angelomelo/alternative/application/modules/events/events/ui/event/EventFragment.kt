@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.OvershootInterpolator
+import android.widget.AdapterView
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -13,8 +14,12 @@ import com.angelomelo.alternative.R
 import com.angelomelo.alternative.application.domain.Event
 import com.angelomelo.alternative.application.domain.filter.EventFilter
 import com.angelomelo.alternative.application.modules.events.events.commons.EndlessRecyclerOnScrollListener
+import com.angelomelo.alternative.application.modules.events.events.commons.RecyclerItemClickListener
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import kotlinx.android.synthetic.main.event_fragment.*
+import android.content.Intent
+import com.angelomelo.alternative.application.modules.events.events.eventDetail.EventDetailActivity
+
 
 class EventFragment : androidx.fragment.app.Fragment() {
 
@@ -23,7 +28,7 @@ class EventFragment : androidx.fragment.app.Fragment() {
     }
 
     private lateinit var viewModel: EventViewModel
-    var eventsLoaded: MutableList<Event> = ArrayList()
+    var mEventsLoaded: MutableList<Event> = ArrayList()
     private lateinit var mAdapter: EventAdapter
     lateinit var mLayoutManager: GridLayoutManager
 
@@ -31,19 +36,48 @@ class EventFragment : androidx.fragment.app.Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.event_fragment, container, false)
+        return inflater.inflate(com.angelomelo.alternative.R.layout.event_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(EventViewModel()::class.java)
-        mAdapter = EventAdapter(context!!, this.eventsLoaded)
+        mAdapter = EventAdapter(context!!, this.mEventsLoaded)
         getEvents()
         initEventSuccessListener()
         initEventErrorListener()
 
         configureRecyclerView()
         initScrollListener()
+        initRecyclerItemClickListener()
+    }
+
+    private fun initRecyclerItemClickListener() {
+        recycler_events.addOnItemTouchListener(
+            RecyclerItemClickListener(
+                context!!,
+                recycler_events,
+                object : RecyclerItemClickListener.OnItemClickListener {
+                    override fun onItemClick(view: View, position: Int) {
+                        val intent = Intent(context, EventDetailActivity::class.java)
+                        val event = mEventsLoaded[position]
+
+                        intent.putExtra("eventId", event.id)
+                        intent.putExtra("title", event.title)
+                        startActivity(intent)
+                    }
+
+                    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
+                    }
+
+                    override fun onLongItemClick(view: View?, position: Int) {
+
+                    }
+
+                }
+            )
+        )
     }
 
     private fun getEvents(currentPage: Int = 0) {
@@ -54,7 +88,7 @@ class EventFragment : androidx.fragment.app.Fragment() {
         viewModel.eventsResponse.observe(this, Observer { response ->
             val events = response?.data?.content
 
-            this.eventsLoaded.addAll(events!!)
+            this.mEventsLoaded.addAll(events!!)
             this.mAdapter.notifyDataSetChanged()
         })
     }
