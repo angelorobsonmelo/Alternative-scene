@@ -67,7 +67,6 @@
         <TextView
                 android:id="@+id/localityTextView"
                 tools:text="Ordem dos headbanger de Alagoas"
-                android:text="Ordem dos headbanger de Alagoas"
                 android:layout_width="363dp"
                 android:layout_height="wrap_content"
                 app:fontFamily="sans-serif"
@@ -100,7 +99,6 @@
         <TextView
                 android:id="@+id/dateFormattedTextView"
                 tools:text="31 de Janeiro de 2019, 19:30h"
-                android:text="31 de Janeiro de 2019, 19:30h"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
@@ -143,7 +141,7 @@
                     android:background="@android:color/background_dark">
 
                 <TextView
-                        android:text="Valor(es)"
+                        android:text="@string/valor_es"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView3"
@@ -179,7 +177,7 @@
                 android:id="@+id/linearLayout2">
 
             <TextView
-                    android:text="Descrição do Evento"
+                    android:text="@string/descri_o_do_evento"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView5"
@@ -188,10 +186,10 @@
                     android:layout_marginLeft="40dp"/>
 
             <TextView
-                    android:text="Este evento é promovido dentro da cena metal de Alagoas e tudo lhe foi dado com nosso esforço"
+                    tools:text="Este evento é promovido dentro da cena metal de Alagoas e tudo lhe foi dado com nosso esforço"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView4"
+                    android:id="@+id/descriptionTextView"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="70dp"
                     android:layout_marginLeft="40dp"/>
@@ -208,7 +206,7 @@
                 android:id="@+id/linearLayout3">
 
             <TextView
-                    android:text="SOBRE O DIVULGADOR"
+                    android:text="@string/sobre_o_divulgador"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="45dp"
@@ -216,13 +214,14 @@
                     android:layout_marginLeft="40dp"/>
 
             <TextView
-                    android:text="ANGELO MELO"
+                    tools:text="ANGELO MELO"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="70dp"
                     android:layout_marginLeft="40dp"
-                    android:textSize="24sp"/>
+                    android:textSize="24sp"
+                    android:id="@+id/promoterTextView"/>
         </LinearLayout>
 
         <LinearLayout
@@ -235,7 +234,7 @@
                 android:background="@color/browser_actions_title_color">
 
             <TextView
-                    android:text="LOCAL"
+                    android:text="@string/local"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="45dp"
@@ -243,29 +242,23 @@
                     android:layout_marginLeft="40dp"/>
 
             <TextView
-                    android:text="Oráculo Choperia"
+                    tools:text="Oráculo Choperia"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="5dp"
                     android:layout_marginLeft="40dp"
-                    android:textSize="24sp"/>
+                    android:textSize="24sp"
+                    android:id="@+id/localityNameTextView"/>
 
             <TextView
-                    android:text="AL - 101,7100, Jacarecica"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="40dp"
-                    android:textSize="16sp"/>
-
-            <TextView
-                    android:text="Maceió, AL"
+                    tools:text="Maceió, AL"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="70dp"
                     android:layout_marginLeft="40dp"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp"
+                    android:id="@+id/cityNameTextView"/>
 
         </LinearLayout>
 

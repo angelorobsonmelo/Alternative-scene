@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.angelomelo.alternative.application.domain.Event
 import com.angelomelo.alternative.application.domain.EventDate
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.event_detail_fragment.*
 import kotlinx.android.synthetic.main.event_fragment.*
 
@@ -46,10 +47,19 @@ class EventDetailFragment : Fragment() {
         viewModel.eventsResponse.observe(this, Observer { response ->
             val eventDetail = response?.data
 
-            titleTextView.text    = eventDetail?.title
-            localityTextView.text = eventDetail?.locality?.name
-            cityTextView.text     = "${eventDetail?.locality?.city?.name}, ${eventDetail?.locality?.city?.state?.name}"
+            titleTextView.text         = eventDetail?.title
+            localityTextView.text      = eventDetail?.locality?.name
+            cityTextView.text          = "${eventDetail?.locality?.city?.name}, ${eventDetail?.locality?.city?.state?.name}"
             dateFormattedTextView.text = getFormatedDates(eventDetail?.eventDates)
+            descriptionTextView.text   = eventDetail?.description
+            promoterTextView.text      = eventDetail?.userApp?.name
+            localityNameTextView.text  = eventDetail?.locality?.name
+            cityNameTextView.text = "${eventDetail?.locality?.city?.name}, ${eventDetail?.locality?.city?.state?.name}"
+
+            Picasso.get()
+                .load(eventDetail?.photoUrl)
+                .placeholder(R.drawable.heavy_metal_default)
+                .into(flyerImage)
         })
     }
 

@@ -2,4 +2,8 @@
     <string name="app_name">Alternative</string>
     <string name="favorite">Favorite</string>
     <string name="share">Share</string>
+    <string name="local">LOCAL</string>
+    <string name="sobre_o_divulgador">SOBRE O DIVULGADOR</string>
+    <string name="valor_es">Valor(es)</string>
+    <string name="descri_o_do_evento">Descrição do Evento</string>
 </resources>
