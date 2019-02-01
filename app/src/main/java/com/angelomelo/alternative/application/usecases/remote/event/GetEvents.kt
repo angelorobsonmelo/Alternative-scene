@@ -1,4 +1,4 @@
-package com.angelomelo.alternative.application.usecases
+package com.angelomelo.alternative.application.usecases.remote.event
 
 import androidx.annotation.NonNull
 import com.angelomelo.alternative.application.UseCase.LoadUseCaseCallback

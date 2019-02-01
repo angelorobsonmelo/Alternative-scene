@@ -7,7 +7,7 @@ import com.angelomelo.alternative.application.domain.Event
 import com.angelomelo.alternative.application.domain.filter.EventFilter
 import com.angelomelo.alternative.application.injections.InjectionUseCase.Companion.provideGetEvents
 import com.angelomelo.alternative.application.service.remote.commom.ResponseListBase
-import com.angelomelo.alternative.application.usecases.GetEvents
+import com.angelomelo.alternative.application.usecases.remote.event.GetEvents
 
 class EventViewModel : ViewModel() {
 

@@ -7,8 +7,11 @@ import androidx.lifecycle.ViewModelProviders
 import com.angelomelo.alternative.R
 import kotlinx.android.synthetic.main.toolbar.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import com.angelomelo.alternative.application.domain.Event
+import com.angelomelo.alternative.application.domain.EventDate
 import kotlinx.android.synthetic.main.event_detail_fragment.*
-
+import kotlinx.android.synthetic.main.event_fragment.*
 
 
 class EventDetailFragment : Fragment() {
@@ -31,7 +34,33 @@ class EventDetailFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(EventDetailViewModel::class.java)
 
-        titleTextView.text = arguments?.get("title") as String
+        val idEvent = arguments?.get("eventId") as Long
+
+        viewModel.findOne(idEvent)
+
+
+        initObservables()
+    }
+
+    private fun initObservables() {
+        viewModel.eventsResponse.observe(this, Observer { response ->
+            val eventDetail = response?.data
+
+            titleTextView.text    = eventDetail?.title
+            localityTextView.text = eventDetail?.locality?.name
+            cityTextView.text     = "${eventDetail?.locality?.city?.name}, ${eventDetail?.locality?.city?.state?.name}"
+            dateFormattedTextView.text = getFormatedDates(eventDetail?.eventDates)
+        })
+    }
+
+    private fun getFormatedDates(eventDates: List<EventDate>?): String {
+        val datesFormated: MutableList<String> = ArrayList()
+
+        eventDates?.forEach {
+            datesFormated.add(it.eventDateAndHourToString)
+        }
+
+        return datesFormated.joinToString(" - ")
     }
 
 }
