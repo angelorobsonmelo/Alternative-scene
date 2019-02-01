@@ -1,18 +1,19 @@
 package com.angelomelo.alternative.application.modules.events.events.eventDetail.ui.eventdetail
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
-import com.angelomelo.alternative.R
-import kotlinx.android.synthetic.main.toolbar.*
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.angelomelo.alternative.application.domain.Event
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.angelomelo.alternative.R
 import com.angelomelo.alternative.application.domain.EventDate
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.event_detail_fragment.*
-import kotlinx.android.synthetic.main.event_fragment.*
 
 
 class EventDetailFragment : Fragment() {
@@ -60,6 +61,11 @@ class EventDetailFragment : Fragment() {
                 .load(eventDetail?.photoUrl)
                 .placeholder(R.drawable.heavy_metal_default)
                 .into(flyerImage)
+
+            val adapter                            = EventDateAdapter(context!!, eventDetail?.eventDates!!)
+            event_date_recycler_view.addItemDecoration(DividerItemDecoration(context, LinearLayout.VERTICAL))
+            event_date_recycler_view.adapter       = adapter
+            event_date_recycler_view.layoutManager = LinearLayoutManager(context)
         })
     }
 

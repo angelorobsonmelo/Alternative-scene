@@ -40,7 +40,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 android:layout_marginTop="5dp"
                 app:layout_constraintTop_toBottomOf="@+id/folterImageView"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 android:textColor="@android:color/darker_gray"
                 android:textStyle="bold"/>
 
@@ -81,7 +81,7 @@
                 android:layout_marginTop="5dp"
                 app:layout_constraintTop_toBottomOf="@+id/titleEventTextView"
                 tools:text="The Place Club - Maceió, AL"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 android:textColor="@android:color/darker_gray"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

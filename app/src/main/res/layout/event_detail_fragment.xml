@@ -137,7 +137,7 @@
             <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
                     android:background="@android:color/background_dark">
 
                 <TextView
@@ -157,10 +157,10 @@
                     android:layout_height="match_parent">
 
                 <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/event_date_recycler_view"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginStart="10dp"/>
+                        android:layout_height="wrap_content" />
+
             </LinearLayout>
 
         </LinearLayout>
@@ -178,7 +178,7 @@
 
             <TextView
                     android:text="@string/descri_o_do_evento"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView5"
                     android:layout_marginTop="45dp"
