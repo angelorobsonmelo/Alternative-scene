@@ -159,7 +159,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/event_date_recycler_view"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"/>
 
             </LinearLayout>
 
@@ -261,6 +261,20 @@
                     android:id="@+id/cityNameTextView"/>
 
         </LinearLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintGuide_begin="8dp"
+                android:id="@+id/guideline"/>
+
+        <androidx.constraintlayout.widget.Guideline
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintGuide_begin="403dp"
+                android:id="@+id/guideline2"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
