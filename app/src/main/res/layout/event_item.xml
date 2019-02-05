@@ -17,7 +17,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/event_img"
+                tools:src="@drawable/heavy_metal_default"
                 android:contentDescription="TODO"
                 android:cropToPadding="false"
                 android:adjustViewBounds="false"
