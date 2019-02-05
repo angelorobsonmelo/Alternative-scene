@@ -22,6 +22,7 @@
                 android:id="@+id/flyerImage"
                 tools:src="@drawable/heavy_metal_default"
                 android:src="@drawable/heavy_metal_default"
+                android:contentDescription="@string/image_event"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
                 android:scaleType="fitXY"
@@ -36,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="24sp"
                 app:fontFamily="sans-serif"
-                android:textColor="@color/browser_actions_title_color"
+                android:textColor="@color/browser_actions_text_color"
                 android:textStyle="bold"
                 android:gravity="center"
                 android:layout_marginTop="8dp"
@@ -50,8 +51,9 @@
 
         <ImageView
                 android:src="@drawable/ic_location_on_black_24dp"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
+                android:layout_width="18sp"
+                android:layout_height="18sp"
+                android:contentDescription="@string/location_icon"
                 app:layout_constraintEnd_toStartOf="@+id/localityTextView"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -78,12 +80,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/titleTextView"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"/>
+                android:layout_marginRight="8dp"
+                android:textColor="@color/browser_actions_text_color"/>
 
         <TextView
                 android:id="@+id/cityTextView"
                 tools:text="Maceió, AL"
-                android:text="Maceió, AL"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:fontFamily="sans-serif"
@@ -94,7 +96,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginRight="8dp"
                 android:layout_marginTop="2dp"
-                />
+                android:textColor="@color/browser_actions_text_color"/>
 
         <TextView
                 android:id="@+id/dateFormattedTextView"
@@ -108,12 +110,14 @@
                 app:layout_constraintStart_toStartOf="@+id/cityTextView"
                 android:layout_marginTop="16dp"
                 app:layout_constraintTop_toBottomOf="@+id/cityTextView"
-                app:layout_constraintHorizontal_bias="0.0"/>
+                app:layout_constraintHorizontal_bias="0.0"
+                android:textColor="@color/browser_actions_text_color"/>
 
         <ImageView
                 android:src="@drawable/ic_access_time_black_24dp"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
+                android:contentDescription="@string/icon_clock"
                 android:id="@+id/imageView2"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginLeft="8dp"
@@ -138,7 +142,7 @@
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@android:color/background_dark">
+                    android:background="@color/colorPrimaryDark">
 
                 <TextView
                         android:text="@string/valor_es"
@@ -147,8 +151,10 @@
                         android:id="@+id/textView3"
                         android:textColor="@color/cardview_light_background"
                         android:textSize="18sp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="10dp"/>
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginBottom="5dp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -174,7 +180,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:background="@color/browser_actions_title_color"
+                android:background="@color/colorPrimary"
                 android:id="@+id/linearLayout2">
 
             <TextView
@@ -184,16 +190,23 @@
                     android:id="@+id/textView5"
                     android:layout_marginTop="45dp"
                     android:textSize="24sp"
-                    android:layout_marginLeft="40dp"/>
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginStart="40dp"
+                    android:textColor="@color/colorAccent"/>
 
             <TextView
                     tools:text="Este evento é promovido dentro da cena metal de Alagoas e tudo lhe foi dado com nosso esforço"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/descriptionTextView"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="70dp"
-                    android:layout_marginLeft="40dp"/>
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginRight="20dp"
+                    android:textColor="@color/colorAccent"
+                    android:layout_marginEnd="10dp"
+                    android:textSize="18sp"/>
 
         </LinearLayout>
 
@@ -212,7 +225,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="45dp"
                     android:textSize="18sp"
-                    android:layout_marginLeft="40dp"/>
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginStart="40dp"/>
 
             <TextView
                     tools:text="ANGELO MELO"
@@ -222,7 +236,9 @@
                     android:layout_marginBottom="70dp"
                     android:layout_marginLeft="40dp"
                     android:textSize="24sp"
-                    android:id="@+id/promoterTextView"/>
+                    android:id="@+id/promoterTextView"
+                    android:layout_marginStart="40dp"
+                    android:textColor="@color/browser_actions_text_color"/>
         </LinearLayout>
 
         <LinearLayout
@@ -232,7 +248,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:background="@color/browser_actions_title_color">
+                android:background="@color/colorPrimary">
 
             <TextView
                     android:text="@string/local"
@@ -240,7 +256,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="45dp"
                     android:textSize="18sp"
-                    android:layout_marginLeft="40dp"/>
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginStart="40dp"
+                    android:textColor="@color/colorAccent"/>
 
             <TextView
                     tools:text="Oráculo Choperia"
@@ -250,7 +268,9 @@
                     android:layout_marginBottom="5dp"
                     android:layout_marginLeft="40dp"
                     android:textSize="24sp"
-                    android:id="@+id/localityNameTextView"/>
+                    android:id="@+id/localityNameTextView"
+                    android:layout_marginStart="40dp"
+                    android:textColor="@color/colorAccent"/>
 
             <TextView
                     tools:text="Maceió, AL"
@@ -259,7 +279,9 @@
                     android:layout_marginBottom="70dp"
                     android:layout_marginLeft="40dp"
                     android:textSize="16sp"
-                    android:id="@+id/cityNameTextView"/>
+                    android:id="@+id/cityNameTextView"
+                    android:layout_marginStart="40dp"
+                    android:textColor="@color/colorAccent"/>
 
         </LinearLayout>
 

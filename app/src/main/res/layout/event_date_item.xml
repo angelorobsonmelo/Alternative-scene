@@ -15,7 +15,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginLeft="2dp"
-            android:layout_marginStart="2dp"/>
+            android:layout_marginStart="2dp"
+            android:textColor="@color/browser_actions_text_color"/>
 
     <TextView
             tools:text="R$25,00"
@@ -26,6 +27,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginEnd="2dp"
-            android:layout_marginRight="2dp"/>
+            android:layout_marginRight="2dp"
+            android:textColor="@color/browser_actions_text_color"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
