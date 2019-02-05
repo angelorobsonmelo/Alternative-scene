@@ -154,7 +154,8 @@
             <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:background="@drawable/box">
 
                 <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/event_date_recycler_view"
