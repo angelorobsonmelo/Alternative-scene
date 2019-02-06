@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.angelomelo.alternative.R
+import com.angelomelo.alternative.application.domain.Event
 import com.angelomelo.alternative.application.domain.EventDate
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.event_detail_fragment.*
@@ -40,7 +41,6 @@ class EventDetailFragment : Fragment() {
 
         viewModel.findOne(idEvent)
 
-
         initObservables()
     }
 
@@ -48,35 +48,44 @@ class EventDetailFragment : Fragment() {
         viewModel.eventsResponse.observe(this, Observer { response ->
             val eventDetail = response?.data
 
-            titleTextView.text         = eventDetail?.title
-            localityTextView.text      = eventDetail?.locality?.name
-            cityTextView.text          = "${eventDetail?.locality?.city?.name}, ${eventDetail?.locality?.city?.state?.name}"
-            dateFormattedTextView.text = getFormatedDates(eventDetail?.eventDates)
-            descriptionTextView.text   = eventDetail?.description
-            promoterTextView.text      = eventDetail?.userApp?.name
-            localityNameTextView.text  = eventDetail?.locality?.name
-            cityNameTextView.text = "${eventDetail?.locality?.city?.name}, ${eventDetail?.locality?.city?.state?.name}"
-
-            Picasso.get()
-                .load(eventDetail?.photoUrl)
-                .placeholder(R.drawable.heavy_metal_default)
-                .into(flyerImage)
-
-            val adapter                            = EventDateAdapter(context!!, eventDetail?.eventDates!!)
-            event_date_recycler_view.addItemDecoration(DividerItemDecoration(context, LinearLayout.VERTICAL))
-            event_date_recycler_view.adapter       = adapter
-            event_date_recycler_view.layoutManager = LinearLayoutManager(context)
+            configureView(eventDetail)
+            configureRecyclerView(eventDetail)
         })
     }
 
-    private fun getFormatedDates(eventDates: List<EventDate>?): String {
-        val datesFormated: MutableList<String> = ArrayList()
+    private fun configureView(eventDetail: Event?) {
+        titleTextView.text         = eventDetail?.title
+        localityTextView.text      = eventDetail?.locality?.name
+        cityTextView.text          = getString(R.string.city_and_state, eventDetail?.locality?.city?.name, eventDetail?.locality?.city?.state?.name)
+        dateFormattedTextView.text = getFormattedDateToString(eventDetail?.eventDates)
+        descriptionTextView.text   = eventDetail?.description
+        promoterTextView.text      = eventDetail?.userApp?.name
+        localityNameTextView.text  = eventDetail?.locality?.name
+        cityNameTextView.text      = getString(R.string.city_and_state, eventDetail?.locality?.city?.name, eventDetail?.locality?.city?.state?.name
+        )
+
+        Picasso.get()
+            .load(eventDetail?.photoUrl)
+            .placeholder(R.drawable.heavy_metal_default)
+            .into(flyerImage)
+    }
+
+    private fun configureRecyclerView(eventDetail: Event?) {
+        val adapter = EventDateAdapter(context!!, eventDetail?.eventDates!!)
+        event_date_recycler_view.isNestedScrollingEnabled = false
+        event_date_recycler_view.addItemDecoration(DividerItemDecoration(context, LinearLayout.VERTICAL))
+        event_date_recycler_view.adapter = adapter
+        event_date_recycler_view.layoutManager = LinearLayoutManager(context)
+    }
+
+    private fun getFormattedDateToString(eventDates: List<EventDate>?): String {
+        val formattedDate: MutableList<String> = ArrayList()
 
         eventDates?.forEach {
-            datesFormated.add(it.eventDateAndHourToString)
+            formattedDate.add(it.eventDateAndHourToString)
         }
 
-        return datesFormated.joinToString(" - ")
+        return formattedDate.joinToString(" - ")
     }
 
 }
