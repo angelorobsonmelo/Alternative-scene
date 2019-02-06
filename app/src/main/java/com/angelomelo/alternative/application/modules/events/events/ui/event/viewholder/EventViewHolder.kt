@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.event_item.view.*
 
 class EventViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    private val imageflyer = itemView.folterImageView
+    private val mImageflyer = itemView.folterImageView
     private val mTitle = itemView.titleEventTextView
     private val mLocality = itemView.eventLocalTextView
     private val mDates = itemView.dateEventTextView
@@ -18,7 +18,7 @@ class EventViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         Picasso.get()
             .load(event.photoUrl)
             .placeholder(R.drawable.heavy_metal_default)
-            .into(imageflyer)
+            .into(mImageflyer)
 
         mDates.text    = getFormatedDates(event)
         mTitle.text    = event.title

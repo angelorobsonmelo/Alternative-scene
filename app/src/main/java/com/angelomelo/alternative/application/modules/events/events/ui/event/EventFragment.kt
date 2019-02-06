@@ -18,6 +18,7 @@ import com.angelomelo.alternative.application.modules.events.events.commons.Recy
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import kotlinx.android.synthetic.main.event_fragment.*
 import android.content.Intent
+import com.angelomelo.alternative.application.modules.events.events.EventActivity
 import com.angelomelo.alternative.application.modules.events.events.eventDetail.EventDetailActivity
 
 
@@ -62,8 +63,7 @@ class EventFragment : androidx.fragment.app.Fragment() {
                         val intent = Intent(context, EventDetailActivity::class.java)
                         val event = mEventsLoaded[position]
 
-                        intent.putExtra("eventId", event.id)
-                        intent.putExtra("title", event.title)
+                        intent.putExtra(EventActivity.eventId, event.id)
                         startActivity(intent)
                     }
 

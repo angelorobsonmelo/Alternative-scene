@@ -8,6 +8,10 @@ import com.angelomelo.alternative.application.modules.events.events.ui.event.Eve
 
 class EventActivity : AppCompatActivity() {
 
+    companion object {
+        val eventId = "eventId"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.event_activity)

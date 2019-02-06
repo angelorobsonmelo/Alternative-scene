@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.angelomelo.alternative.R
 import com.angelomelo.alternative.application.domain.Event
 import com.angelomelo.alternative.application.domain.EventDate
+import com.angelomelo.alternative.application.modules.events.events.EventActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.event_detail_fragment.*
 
@@ -37,7 +38,7 @@ class EventDetailFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(EventDetailViewModel::class.java)
 
-        val idEvent = arguments?.get("eventId") as Long
+        val idEvent = arguments?.get(EventActivity.eventId) as Long
 
         viewModel.findOne(idEvent)
 
