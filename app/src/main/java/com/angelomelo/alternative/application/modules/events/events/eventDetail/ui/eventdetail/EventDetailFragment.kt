@@ -3,6 +3,7 @@ package com.angelomelo.alternative.application.modules.events.events.eventDetail
 import android.os.Bundle
 import android.view.*
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
@@ -52,6 +53,23 @@ class EventDetailFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         inflater!!.inflate(R.menu.menu_toolbar, menu)
         super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        val itemMenuId            = item!!.itemId
+        val favorite = R.id.favorite
+        val share = R.id.share
+
+        when (itemMenuId) {
+            favorite -> {
+                Toast.makeText(context, "Favorite pressed", Toast.LENGTH_LONG).show()
+            }
+            share -> {
+                Toast.makeText(context, "Share pressed", Toast.LENGTH_LONG).show()
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     private fun setSupportActionBar(toolbar: Toolbar) {
