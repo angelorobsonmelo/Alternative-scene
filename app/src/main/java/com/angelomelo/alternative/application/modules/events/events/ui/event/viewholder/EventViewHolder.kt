@@ -20,10 +20,9 @@ class EventViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             .placeholder(R.drawable.heavy_metal_default)
             .into(imageflyer)
 
-        mDates.text = getFormatedDates(event)
-
-        mTitle.text = event.title
-        mLocality.text = "${event.locality.name} - ${event.locality.city.name}, ${event.locality.city.state.name} "
+        mDates.text    = getFormatedDates(event)
+        mTitle.text    = event.title
+        mLocality.text =  itemView.context.getString(R.string.locality_and_city_and_state, event.locality.name, event.locality.city.name, event.locality.city.state.name)
     }
 
     private fun getFormatedDates(event: Event): String {

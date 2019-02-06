@@ -10,5 +10,6 @@
     <string name="location_icon">location_icon</string>
     <string name="icon_clock">icon_clock</string>
     <string name="city_and_state">%1$s, %2$s</string>
+    <string name="locality_and_city_and_state">%1$s - %2$s, %3$s</string>
 
 </resources>
