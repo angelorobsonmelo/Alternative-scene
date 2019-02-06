@@ -19,12 +19,11 @@ class EventDateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val dateFormat = simpleDateFormat.format(eventDate.date)
 
-        val format = NumberFormat.getCurrencyInstance(Locale.getDefault())
+        val format = NumberFormat.getCurrencyInstance(Locale("PT-br"))
         format.currency = Currency.getInstance("BRL")
         format.minimumFractionDigits = 2
         val priceWithCurrency = format.format(eventDate.price)
 
-        println(date)
         date.text  = dateFormat
         price.text = priceWithCurrency
     }
