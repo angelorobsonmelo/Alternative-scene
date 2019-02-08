@@ -16,6 +16,7 @@ import com.angelomelo.alternative.application.domain.Event
 import com.angelomelo.alternative.application.domain.EventDate
 import com.angelomelo.alternative.application.modules.events.events.EventActivity
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.event_detail_activity.*
 import kotlinx.android.synthetic.main.event_detail_fragment.*
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.android.synthetic.main.toolbar.view.*
@@ -40,7 +41,7 @@ class EventDetailFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(EventDetailViewModel::class.java)
         setHasOptionsMenu(true)
-        val toolbar = toolbarDetail as Toolbar
+        val toolbar = activity?.toolbarDetail as Toolbar
         setSupportActionBar(toolbar)
 
         val idEvent = arguments?.get(EventActivity.eventId) as Long
@@ -78,6 +79,7 @@ class EventDetailFragment : Fragment() {
         appCompatActivity?.setSupportActionBar(toolbar)
         appCompatActivity?.supportActionBar?.setDisplayShowTitleEnabled(false)
         appCompatActivity?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        appCompatActivity?.supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_close)
 
         toolbar.toolbar_title.text = getString(R.string.event_detail_title)
     }
