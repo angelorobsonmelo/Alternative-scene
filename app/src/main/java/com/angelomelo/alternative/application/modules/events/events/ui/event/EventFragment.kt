@@ -20,6 +20,11 @@ import kotlinx.android.synthetic.main.event_fragment.*
 import android.content.Intent
 import com.angelomelo.alternative.application.modules.events.events.EventActivity
 import com.angelomelo.alternative.application.modules.events.events.eventDetail.EventDetailActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.android.synthetic.main.event_activity.*
+import com.angelomelo.alternative.application.modules.commons.BottomNavigationBehavior
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+
 
 
 class EventFragment : androidx.fragment.app.Fragment() {
@@ -32,6 +37,7 @@ class EventFragment : androidx.fragment.app.Fragment() {
     var mEventsLoaded: MutableList<Event> = ArrayList()
     private lateinit var mAdapter: EventAdapter
     lateinit var mLayoutManager: GridLayoutManager
+    private var mBottomNavigationView: BottomNavigationView? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,6 +50,7 @@ class EventFragment : androidx.fragment.app.Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(EventViewModel()::class.java)
         mAdapter = EventAdapter(context!!, this.mEventsLoaded)
+        mBottomNavigationView = activity?.main_nav
         getEvents()
         initEventSuccessListener()
         initEventErrorListener()
@@ -51,6 +58,7 @@ class EventFragment : androidx.fragment.app.Fragment() {
         configureRecyclerView()
         initScrollListener()
         initRecyclerItemClickListener()
+        configureNavMain()
     }
 
     private fun initRecyclerItemClickListener() {
@@ -119,4 +127,30 @@ class EventFragment : androidx.fragment.app.Fragment() {
         })
     }
 
+
+    private fun configureNavMain() {
+        val layoutParams = mBottomNavigationView?.layoutParams as CoordinatorLayout.LayoutParams
+        layoutParams.behavior = BottomNavigationBehavior()
+
+        mBottomNavigationView?.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+//                    replaceFragment(HomeFragment())
+                    return@setOnNavigationItemSelectedListener true
+                }
+                R.id.nav_notification -> {
+//                    replaceFragment(EventFragment())
+                    return@setOnNavigationItemSelectedListener true
+                }
+                R.id.nav_person -> {
+//                    replaceFragment(PersonFragment())
+                    return@setOnNavigationItemSelectedListener true
+                }
+            }
+            return@setOnNavigationItemSelectedListener false
+        }
+    }
+
+
 }
+

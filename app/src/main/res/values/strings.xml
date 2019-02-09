@@ -12,5 +12,8 @@
     <string name="city_and_state">%1$s, %2$s</string>
     <string name="locality_and_city_and_state">%1$s - %2$s, %3$s</string>
     <string name="event_detail_title">Event Detail</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_notification">Favorite</string>
+    <string name="nav_person">Profile</string>
 
 </resources>
