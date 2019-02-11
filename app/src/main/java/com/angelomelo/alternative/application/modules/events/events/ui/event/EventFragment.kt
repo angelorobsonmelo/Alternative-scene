@@ -93,7 +93,7 @@ class EventFragment : androidx.fragment.app.Fragment() {
     }
 
     private fun initEventSuccessListener() {
-        viewModel.eventsResponse.observe(this, Observer { response ->
+        viewModel.success.observe(this, Observer { response ->
             val events = response?.data?.content
 
             this.mEventsLoaded.addAll(events!!)

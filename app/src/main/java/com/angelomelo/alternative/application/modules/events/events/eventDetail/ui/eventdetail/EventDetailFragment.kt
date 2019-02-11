@@ -85,7 +85,7 @@ class EventDetailFragment : Fragment() {
     }
 
     private fun initObservables() {
-        viewModel.eventsResponse.observe(this, Observer { response ->
+        viewModel.success.observe(this, Observer { response ->
             val eventDetail = response?.data
 
             configureView(eventDetail)
